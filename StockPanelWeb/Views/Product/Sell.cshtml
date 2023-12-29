@@ -1,0 +1,70 @@
+﻿@model Product
+
+<form method="post" asp-action="DeletePOST">
+	<input asp-for="Id" hidden/>
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-light">Delete Product</h2>
+			<hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="ProductName"></label>
+			<input asp-for="ProductName" disabled class="form-control" />
+		</div>
+		<div class="container p-0">
+			<div class="row pt-0">
+				<div class="col-6">
+					<div class="mb-3">
+						<label asp-for="StockCode"></label>
+						<input asp-for="StockCode" disabled class="form-control" />
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="mb-3">
+						<label asp-for="CategoryId"></label>
+						<select asp-for="CategoryId" name="CategoryId" disabled class="form-control">
+							<option disabled value="">Select a category...</option>
+							@foreach (var category in ViewBag.Categories)
+							{
+								<option value="@category.Id">@category.CategoryName</option>
+							}
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="container p-0">
+				<div class="row pt-0">
+					<div class="col-4">
+						<div class="mb-1">
+							<label asp-for="ProductAmount"></label>
+							<input asp-for="ProductAmount" disabled class="form-control" />
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="mb-1">
+							<label asp-for="ProductBuyingPrice"></label>
+							<input asp-for="ProductBuyingPrice" disabled class="form-control" />
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="mb-1">
+							<label asp-for="ProductSellingPrice"></label>
+							<input asp-for="ProductSellingPrice" disabled class="form-control" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-danger">Delete Product</button>
+		<a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Back to List</a>
+	</div>
+<br />
+<br />
+</form>
+
+@section Scripts
+{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@using System.Security.Claims;
+@{
+    // Get the User's UserType claim from the current HttpContext.
+    var userTypeClaim = Context.User.FindFirstValue(ClaimTypes.Role);
+
+    if (userTypeClaim == "user")
+    {
+        Layout = "_LayoutUser";
+    }
+    else if (userTypeClaim == "admin")
+    {
+        Layout = "_LayoutAdmin";
+    }
+    else
+    {
+        Layout = "_Layout"; // Use the default layout if UserType is not "user" or "admin".
+    }
+}

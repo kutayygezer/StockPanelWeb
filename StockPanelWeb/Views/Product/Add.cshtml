@@ -1,0 +1,74 @@
+﻿@model Product
+
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-light">Add New Product</h2>
+			<hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="ProductName"></label>
+			<input asp-for="ProductName" class="form-control" />
+			<span asp-validation-for="ProductName" class="text-danger"></span>
+		</div>
+		<div class="container p-0">
+			<div class="row pt-0">
+				<div class="col-6">
+					<div class="mb-3">
+						<label asp-for="StockCode"></label>
+						<input asp-for="StockCode" class="form-control" />
+						<span asp-validation-for="StockCode" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="mb-3">
+						<label asp-for="CategoryId"></label>
+						<select asp-for="CategoryId" name="CategoryId" class="form-select">
+							<option disabled value="">Select a category...</option>
+							@foreach (var category in ViewBag.Categories)
+							{
+								<option value="@category.Id">@category.CategoryName</option>
+							}
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="container p-0">
+				<div class="row pt-0">
+					<div class="col-4">
+						<div class="mb-1">
+							<label asp-for="ProductAmount"></label>
+							<input asp-for="ProductAmount" class="form-control" />
+							<span asp-validation-for="ProductAmount" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="mb-1">
+							<label asp-for="ProductBuyingPrice"></label>
+							<input asp-for="ProductBuyingPrice" class="form-control" />
+							<span asp-validation-for="ProductBuyingPrice" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="mb-1">
+							<label asp-for="ProductSellingPrice"></label>
+							<input asp-for="ProductSellingPrice" class="form-control" />
+							<span asp-validation-for="ProductSellingPrice" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Save Product</button>
+		<a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Back to List</a>
+	</div>
+<br />
+<br />
+</form>
+
+@section Scripts
+{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

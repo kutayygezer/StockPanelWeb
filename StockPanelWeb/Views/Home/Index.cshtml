@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using System.Security.Claims;
+@{
+    var userTypeClaim = Context.User.FindFirstValue(ClaimTypes.Role);
+}
+
+<style>
+    /* Add your custom CSS styles here */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
+
+    .hero-section {
+        background-image: url("path/to/your/background-image.jpg");
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .hero-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+    }
+
+    .welcome-message {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="hero-section">
+    <div class="hero-overlay">
+        <div class="container">
+            <h1 class="welcome-message">Welcome, @User.Identity.Name</h1>
+            <p class="lead">You can select "Product Operations" to add - delete - edit - sell products.</p>
+            @if (userTypeClaim != "user")
+            {
+                <p class="lead">You can select "User Operations" to add - delete - edit users.</p>
+                <p class="lead">You can select "Log Entries" to review the logs.</p>
+            }
+        </div>
+    </div>
+</div>

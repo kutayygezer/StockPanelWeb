@@ -1,0 +1,49 @@
+﻿@model StockPanelWeb.Models.LoginViewModel;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/StockPanelWeb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/StockPanelTheme.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container d-flex align-items-center justify-content-center vh-100">
+        <div class="card w-50">
+            <div class="card-body">
+                <h1 class="text-center mb-4">Sign in to Stock Panel</h1>
+                <form asp-controller="Access" asp-action="Login" method="post">
+                    <div class="mb-3">
+                        <label for="UserName" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Username" asp-for="UserName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="UserPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="UserPassword" name="UserPassword" placeholder="Password" asp-for="UserPassword" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="KeepLoggedIn" name="KeepLoggedIn" asp-for="KeepLoggedIn">
+                        <label class="form-check-label" for="KeepLoggedIn">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                </form>
+                @if (ViewData["ValidateMessage"] != null)
+                {
+                    <div class="text-center mt-3">
+                        <label class="text-primary-emphasis">@ViewData["ValidateMessage"]</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
